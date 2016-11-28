@@ -575,7 +575,7 @@ class Manager(object):
 
         return response
 
-    def originate(self, channel, exten, context='', priority='', timeout='', caller_id='', async=False, account='', variables={}):
+    def originate(self, channel, exten, context='', priority='', timeout='', caller_id='', async=False, account='', action_id='', variables={}):
         """Originate a call"""
 
         cdict = {'Action': 'Originate'}
@@ -593,6 +593,8 @@ class Manager(object):
             cdict['Async'] = 'yes'
         if account:
             cdict['Account'] = account
+        if action_id:
+            cdict['ActionID'] = action_id
         # join dict of vairables together in a string in the form of 'key=val|key=val'
         # with the latest CVS HEAD this is no longer necessary
         # if variables: cdict['Variable'] = '|'.join(['='.join((str(key), str(value))) for key, value in variables.items()])
